@@ -8,7 +8,7 @@ router = DefaultRouter()
 router.register("", TodoViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path("create/", create_todo, name="create"),
-    path("list", todo_list, name="todo_list"),
+    path('todos', include(router.urls)),
+    path("create/", create_todo, name="create_todo"),
+    path("list/", todo_list, name="todo_list"),
 ]

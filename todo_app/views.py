@@ -25,7 +25,7 @@ def create_todo(request):
             form.save()
             _logger.info("Saved new todo")
             messages.success(request, "Saved")
-            return redirect("todo_list")
+            return redirect("todos:todo_list")
         _logger.warning("Todo is not valid")
     form = TodoForm()
     return render(request, "todo/create.html", dict(form=form))
