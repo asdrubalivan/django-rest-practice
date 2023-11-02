@@ -16,19 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from todo_app.views import TodoViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-
-router = routers.DefaultRouter()
-router.register("todos", TodoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh", TokenRefreshView.as_view(), name="token_refresh"),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
-    path("swagger-ui/", SpectacularSwaggerView.as_view(), name="swagger-ui")
+    path("swagger-ui/", SpectacularSwaggerView.as_view(), name="swagger-ui"),
+    path("todos/", include("todo_app.urls")),
 ]

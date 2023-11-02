@@ -1,0 +1,20 @@
+<h1>Todo List</h1>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<ul>
+{% for todo in todos %}
+    <li>
+        <h2>{{ todo.title }}</h2>
+        <p>Completed: {{ todo.completed }}</p>
+    </li>
+{% empty %}
+    <li>No todos yet.</li>
+{% endfor %}
+</ul>
